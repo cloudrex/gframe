@@ -1,22 +1,22 @@
 import Entity from "./entity";
-import {Id} from "./helpers";
+import {ShortId} from "./helpers";
 
 export default class EntityMap {
-    protected readonly entities: Map<Id, Entity>;
+    protected readonly entities: Map<ShortId, Entity>;
 
     public constructor() {
         this.entities = new Map();
     }
 
-    public get<T extends Entity = Entity>(id: Id): T | undefined {
+    public get<T extends Entity = Entity>(id: ShortId): T | undefined {
         return this.entities.get(id) as T;
     }
 
-    public has(id: Id): boolean {
+    public has(id: ShortId): boolean {
         return this.entities.has(id);
     }
 
-    public remove(id: Id): boolean {
+    public remove(id: ShortId): boolean {
         return this.entities.delete(id);
     }
 

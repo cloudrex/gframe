@@ -1,4 +1,8 @@
 export default class Vector {
+    public static get origin(): Vector {
+        return new Vector(0, 0);
+    }
+
     public readonly x: number;
 
     public readonly y: number;
@@ -30,5 +34,12 @@ export default class Vector {
          * V = v / ||v||
          */
         return new Vector(this.x / magnitude, this.y / magnitude);
+    }
+
+    public within(from: Vector, to: Vector): boolean {
+        return this.x > from.x
+            && this.y > from.y
+            && this.x < to.x
+            && this.y < to.y;
     }
 }

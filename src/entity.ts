@@ -1,19 +1,21 @@
 import Vector from "./vector";
-import {Id} from "./helpers";
+import {ShortId} from "./helpers";
 import shortid from "shortid";
 
-export default class Entity {
+export default abstract class Entity {
     protected _position: Vector;
 
     public readonly tags: Set<string>;
 
-    public readonly id: Id;
+    public readonly id: ShortId;
 
     public constructor(position: Vector) {
         this._position = position;
         this.tags = new Set();
         this.id = shortid.generate();
     }
+
+    public abstract draw(): void;
 
     public get position(): Vector {
         return this._position;
