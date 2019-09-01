@@ -1,0 +1,19 @@
+{
+    "name": "gamext",
+    "version": "1.0.0",
+    "description": "Game framework",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/shortid": "0.0.29",
+        "typescript": "^3.6.2"
+    },
+    "dependencies": {
+        "shortid": "^2.2.14"
+    }
+}
