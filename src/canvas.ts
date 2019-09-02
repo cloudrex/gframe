@@ -1,4 +1,4 @@
-export type DrawCallback = (delta: number) => Promise<void>;
+export type DrawCallback = (delta: number) => Promise<void> | void;
 
 export interface ICanvasOptions {
     readonly canvasId: string;
@@ -36,7 +36,7 @@ export default class Canvas {
         this.canvasEl = canvasEl;
     }
 
-    public start(callback: DrawCallback): void {
+    public start(callback?: DrawCallback): void {
         let lastTime: number | null = null;
         let firstFrame: boolean = true;
 
@@ -48,11 +48,13 @@ export default class Canvas {
 
                 lastTime = time;
 
-                if (firstFrame) {
-                    await callback(0);
-                }
-                else {
-                    await callback(time - lastTime);
+                if (callback) {
+                    if (firstFrame) {
+                        await callback(0);
+                    }
+                    else {
+                        await callback(time - lastTime);
+                    }
                 }
 
                 window.requestAnimationFrame(broker);
