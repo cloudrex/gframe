@@ -2,16 +2,19 @@
     "name": "gamext",
     "version": "1.0.0",
     "description": "Game framework",
-    "main": "index.js",
+    "main": "src/test/game.js",
     "scripts": {
-        "build": "tsc"
+        "build": "webpack"
     },
     "keywords": [],
     "author": "",
     "license": "MIT",
     "devDependencies": {
         "@types/shortid": "0.0.29",
-        "typescript": "^3.6.2"
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.6.2",
+        "webpack": "^4.39.3",
+        "webpack-cli": "^3.3.8"
     },
     "dependencies": {
         "shortid": "^2.2.14"

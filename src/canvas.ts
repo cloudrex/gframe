@@ -37,6 +37,8 @@ export default class Canvas {
     }
 
     public start(callback?: DrawCallback): void {
+        this.running = true;
+
         let lastTime: number | null = null;
         let firstFrame: boolean = true;
 
@@ -48,11 +50,12 @@ export default class Canvas {
 
                 lastTime = time;
 
-                if (callback) {
+                if (callback !== undefined) {
                     if (firstFrame) {
                         await callback(0);
                     }
                     else {
+                        // TODO: Substracting itself.
                         await callback(time - lastTime);
                     }
                 }
