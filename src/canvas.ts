@@ -43,25 +43,27 @@ export default class Canvas {
         let firstFrame: boolean = true;
 
         const broker = async (time: number) => {
-            if (this.running) {
-                if (firstFrame) {
-                    firstFrame = false;
-                }
-
-                lastTime = time;
-
-                if (callback !== undefined) {
-                    if (firstFrame) {
-                        await callback(0);
-                    }
-                    else {
-                        // TODO: Substracting itself.
-                        await callback(time - lastTime);
-                    }
-                }
-
-                window.requestAnimationFrame(broker);
+            // Return immediatly if the running status is not set.
+            if (!this.running) {
+                return;
             }
+
+            if (firstFrame) {
+                firstFrame = false;
+            }
+
+            if (callback !== undefined) {
+                if (firstFrame) {
+                    await callback(0);
+                }
+                else {
+                    // TODO: Cleanup.
+                    await callback(time - (lastTime || 0));
+                    lastTime = time;
+                }
+            }
+
+            window.requestAnimationFrame(broker);
         };
 
         window.requestAnimationFrame(broker);
